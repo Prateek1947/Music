@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('',views.index,name='home'),
-    path('(?P<album_id>[0-9]+)/)',views.details)
+    path('<int:album_id>/',views.details,name='details')
 ]
