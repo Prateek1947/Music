@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #images {
+            margin: 50px auto;
+        }
+
+        #images a {
+            margin: 0px 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+        }
+        .caption{
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="images">
+    {%for album in albums%}
+        <a href="/music/{{album.id}}">
+            <img src="{{ album.album_logo }}" width="120px" height="100px">
+            <div class="caption" align="center">{{album.album_title}}</div>
+        </a>
+    {%endfor%}
+    </div>
+</body>
+
+</html>
