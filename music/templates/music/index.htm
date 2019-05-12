@@ -1,10 +1,11 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'music/style.css' %}" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <style>
         #images {
             margin: 50px auto;
@@ -16,20 +17,28 @@
             text-decoration: none;
             color: black;
         }
-        .caption{
+
+        .caption {
             font-size: 15px;
         }
     </style>
 </head>
 
 <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href={% url 'music:home' %}>Viberr</a>
+            </div>
+        </div>
+    </nav>
     <div id="images">
-    {%for album in albums%}
+        {%for album in albums%}
         <a href="{% url 'music:details' album.id %}">
             <img src="{{ album.album_logo }}" width="120px" height="100px">
             <div class="caption" align="center">{{album.album_title}}</div>
         </a>
-    {%endfor%}
+        {%endfor%}
     </div>
 </body>
 
