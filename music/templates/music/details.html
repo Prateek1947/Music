@@ -11,11 +11,24 @@
     <img src="{{album.album_logo}}" alt="" width="40%" height="350px"><br>
     <h1>{{album.album_title}}</h1>
     <h3>{{album.artist}}</h3>
-    <ul>
-        {%for song in songs%}
-        <li>{{song.song_title}}{{song.file_type}}</li>
-        {%endfor %}
-    </ul>
+    {% if error_message %}
+    <p>{{error_message}}</p>
+    {% endif %}
+    <form action="{% url 'music:favourite' album.id %}" method="post">
+        {% csrf_token %}
+        {% for song in songs %}
+        <input type="radio" name="song" id="song{{forloop.counter}}" value="{{song.id}}" />
+        <label for="song{{forloop.counter}}">{{song.song_title}}{{song.file_type}}</label>
+        
+        {% if song.is_favourite %}
+            <img src="https://www.titanui.com/wp-content/uploads/2016/07/29/Favorite-Star-Vector.png" alt="Fav" height="25px" width="25px"/>
+        {% endif %}
+        
+        <br>
+        {% endfor %}
+        <br>
+        <input type="submit" value="Set As Favourite" />
+    </form>
 </body>
 
 </html>
