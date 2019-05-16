@@ -1,22 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "music/base.html" %}
+{% block title %}
+Album Details
+{% endblock title %}
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-</head>
-
-<body style="margin-left:25px">
     <img src="{{album.album_logo}}" alt="" width="40%" height="350px"><br>
     <h1>{{album.album_title}}</h1>
     <h3>{{album.artist}}</h3>
     {% if error_message %}
     <p>{{error_message}}</p>
     {% endif %}
-    <form action="{% url 'music:favourite' album.id %}" method="post">
+    {% comment %} <form action="{% url 'music:favourite' album.id %}" method="post">
         {% csrf_token %}
-        {% for song in songs %}
+        {% for song in album.song_set.all %}
         <input type="radio" name="song" id="song{{forloop.counter}}" value="{{song.id}}" />
         <label for="song{{forloop.counter}}">{{song.song_title}}{{song.file_type}}</label>
         
@@ -28,7 +24,5 @@
         {% endfor %}
         <br>
         <input type="submit" value="Set As Favourite" />
-    </form>
-</body>
-
-</html>
+    </form> {% endcomment %}
+{% endblock content %}

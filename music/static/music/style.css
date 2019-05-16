@@ -1,4 +1,35 @@
+#images {
+    margin: 50px auto;
+}
+
+#images a {
+    margin: 0px 20px;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
+.caption {
+    font-size: 15px;
+}
 body{
     background-image: url('images/background.jpg');
-    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-repeat: round;
+}
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-brand {
+    font-family: 'Satisfy', cursive;
+}
+
+.glyphicon-star {
+    color: #CCCCCC;
+    font-size: 16px;
+}
+
+.glyphicon-star.active {
+    color: #FDB230;
 }

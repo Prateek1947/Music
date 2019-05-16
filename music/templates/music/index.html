@@ -1,37 +1,8 @@
-{%load static%}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'music/style.css' %}" type="text/css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <style>
-        #images {
-            margin: 50px auto;
-        }
-
-        #images a {
-            margin: 0px 20px;
-            display: inline-block;
-            text-decoration: none;
-            color: black;
-        }
-
-        .caption {
-            font-size: 15px;
-        }
-    </style>
-</head>
-
-<body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href={% url 'music:home' %}>Viberr</a>
-            </div>
-        </div>
-    </nav>
+{% extends "music/base.html" %}
+{% block title %}
+Viberr
+{% endblock title %}
+{% block content %}
     <div id="images">
         {%for album in albums%}
         <a href="{% url 'music:details' album.id %}">
@@ -40,6 +11,4 @@
         </a>
         {%endfor%}
     </div>
-</body>
-
-</html>
+{% endblock %}

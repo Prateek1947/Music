@@ -1,0 +1,15 @@
+{% extends "music/base.html" %}
+{% block title %}
+Add Album
+{% endblock title %}
+{% block content %}
+<form action="" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+    {% for fields in form %}
+    {{fields.error}}<br>
+    {{fields.label_tag}}
+    {{fields}}
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
+{% endblock content %}
