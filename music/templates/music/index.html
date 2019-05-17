@@ -6,7 +6,7 @@ Viberr
     <div id="images">
         {%for album in albums%}
         <a href="{% url 'music:details' album.id %}">
-            <img src="{{ album.album_logo }}" width="120px" height="100px">
+            <img src="{{ album.album_logo.url }}" width="120px" height="100px">
             <div class="caption" align="center">{{album.album_title}}</div>
         </a>
         {%endfor%}

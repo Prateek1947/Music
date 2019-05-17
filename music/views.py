@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404
 from .models import Album, Song
+from .forms import UserForm
 from django.template import loader
 from django.shortcuts import render, get_object_or_404
-from django.views import generic
+from django.views import generic, View
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
@@ -28,6 +30,28 @@ class CreateAlbum(generic.CreateView):
     model = Album
     fields = ['artist', 'album_title', 'genre', 'album_logo']
 
+
+class UserFormView(View):
+    form_class = UserForm
+    template_name = 'music/login_form.html'
+
+    def get(self, request):
+        return render(request, self.template_name, {'forms': self.form_class()})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            password=form.cleaned_data['password']
+            user.set_password(password)
+            user.save()
+
+            user = authenticate(request, username=form.cleaned_data['username'], password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('music:home')
+            
+        return redirect('music:register')
 
 # def index(request):
 #     albums = Album.objects.all()

@@ -4,7 +4,7 @@ Album Details
 {% endblock title %}
 {% block content %}
 
-    <img src="{{album.album_logo}}" alt="" width="40%" height="350px"><br>
+    <img src="{{album.album_logo.url}}" alt="" width="40%" height="350px"><br>
     <h1>{{album.album_title}}</h1>
     <h3>{{album.artist}}</h3>
     {% if error_message %}
